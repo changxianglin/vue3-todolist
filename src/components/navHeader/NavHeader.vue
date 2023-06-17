@@ -1,5 +1,7 @@
 <template>
-  <div>Header</div>
+  <div>
+    <input placeholder="请输入任务名称" v-model="value" />
+  </div>
 </template>
 
 <script>
@@ -14,8 +16,9 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
+    let value = ''
     return {
-
+      value
     }
   }
 })

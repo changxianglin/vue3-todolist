@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, reactive, toRefs } from 'vue';
 import NavHeader from '../components/navHeader/NavHeader.vue'
 import NavMain from '../components/navMain/NavMain.vue'
 import NavFooter from '../components/navFooter/NavFooter.vue'
@@ -24,14 +24,24 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-    let num = ref(10)
-    let name = ref('zhangsan')
-    let arr = ref(['a', 'b', 'c', 'd'])
+    // let num = ref(10)
+    // let name = ref('zhangsan')
+    // let arr = ref(['a', 'b', 'c', 'd'])
+
+    let data = reactive({
+      name: 'zhangsan',
+      age: 20,
+      obj: {
+        price: 10,
+      }
+    })
 
     return {
-      num, 
-      name,
-      arr
+      // num, 
+      // name,
+      // arr
+      // data
+      ...toRefs(data)
     }
   }
 })

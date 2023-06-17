@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import NavHeader from '../components/navHeader/NavHeader.vue'
 import NavMain from '../components/navMain/NavMain.vue'
 import NavFooter from '../components/navFooter/NavFooter.vue'
@@ -24,8 +24,14 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-    return {
+    let num = ref(10)
+    let name = ref('zhangsan')
+    let arr = ref(['a', 'b', 'c', 'd'])
 
+    return {
+      num, 
+      name,
+      arr
     }
   }
 })

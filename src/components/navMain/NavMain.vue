@@ -1,9 +1,9 @@
 <template>
   <div v-for="(item, index) in list" :key="index">
-    <div>
+    <div class="item">
       <input type="checkbox" v-model="item.complete" />
       {{ item.title }}
-      <button>删除</button>
+      <button class="del" @click="del(item, index)">删除</button>
     </div>
   </div>
 </template>
@@ -34,13 +34,35 @@ export default defineComponent({
         complete: false,
       }
     ])
+
+    let del = (item, index) => {
+
+    }
+
     return {
       list,
+      del,
     }
   }
 })
 </script>
 
 <style scoped lang="scss">
-
+  .item {
+    width: 160px;
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+    button {
+      position: absolute;
+      right: 20px;
+      top: 6px;
+      display: none;
+    }
+    &:hover {
+      button {
+        display: block;
+      }
+    }
+  }
 </style>

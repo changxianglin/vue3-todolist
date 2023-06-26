@@ -1,14 +1,15 @@
 <template>
   <div>
-    <nav-header></nav-header>
+    <!-- <nav-header></nav-header>
     <nav-main></nav-main>
-    <nav-footer></nav-footer>
+    <nav-footer></nav-footer> -->
     <!-- {{ num1 }} --- {{ num2 }}
     两个数的和 {{ addNum }}
     <div>
       <button @click="add">add</button>
     </div> -->
     <!-- {{ list }} -->
+    <button @click="goto">跳转路由</button>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import NavHeader from '../components/navHeader/NavHeader.vue'
 import NavMain from '../components/navMain/NavMain.vue'
 import NavFooter from '../components/navFooter/NavFooter.vue'
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Home',
@@ -31,6 +33,7 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
+    const router = useRouter()
     let store = useStore()
     let list = computed(() => {
       return store.state.list
@@ -58,6 +61,12 @@ export default defineComponent({
       num2.value++
     }
 
+    let goto = () => {
+      router.push({
+        path: '/about'
+      })
+    }
+
     return {
       // num, 
       // name,
@@ -69,6 +78,7 @@ export default defineComponent({
       addNum,
       add,
       list, 
+      goto,
     }
   }
 })

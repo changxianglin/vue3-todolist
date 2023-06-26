@@ -1,7 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <button @click="backHome">回到首页</button>
+  <div class="start">
+    <button @click="start">开始任务</button>
   </div>
 </template>
 
@@ -10,16 +9,18 @@ import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
-  name: 'About',
+  name: 'Start',
   setup() {
     let router = useRouter()
 
-    let backHome = () => {
-      router.back()
+    let start = () => {
+      router.push({
+        path: '/home'
+      })
     }
-
+    
     return {
-      backHome,
+      start,
     }
   }
 })

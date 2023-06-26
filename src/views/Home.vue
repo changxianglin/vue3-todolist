@@ -8,7 +8,7 @@
     <div>
       <button @click="add">add</button>
     </div> -->
-    {{ list }}
+    <!-- {{ list }} -->
   </div>
 </template>
 

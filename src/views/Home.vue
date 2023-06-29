@@ -19,7 +19,7 @@ import NavHeader from '../components/navHeader/NavHeader.vue'
 import NavMain from '../components/navMain/NavMain.vue'
 import NavFooter from '../components/navFooter/NavFooter.vue'
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute, } from 'vue-router'
 
 export default defineComponent({
   name: 'Home',
@@ -34,6 +34,8 @@ export default defineComponent({
 
   setup(props, ctx) {
     const router = useRouter()
+    const route = useRoute()
+    console.log(route.params)
     let store = useStore()
     let list = computed(() => {
       return store.state.list

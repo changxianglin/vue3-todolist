@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref, } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -13,9 +13,25 @@ export default defineComponent({
   setup() {
     let router = useRouter()
 
+    let name = ref('John')
+    let num = ref(10)
+    let obj = ref({
+      msg: 'start',
+    })
     let start = () => {
       router.push({
-        path: '/home'
+        // path: '/home',
+        // query: {
+        //   name: name.value,
+        //   num: num.value,
+        //   obj: JSON.stringify(obj),
+        // },
+        name: 'Home',
+        params: {
+          name: name.value,
+          num: num.value,
+          obj: JSON.stringify(obj),
+        },
       })
     }
     

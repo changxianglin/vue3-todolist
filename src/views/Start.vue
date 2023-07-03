@@ -5,12 +5,13 @@
 </template>
 
 <script>
-import { defineComponent, ref, } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref, } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Start',
   setup() {
+    console.log('setup...')
     let router = useRouter()
 
     let name = ref('John')
@@ -18,6 +19,17 @@ export default defineComponent({
     let obj = ref({
       msg: 'start',
     })
+
+    onMounted(() => {
+      console.log('onMounted...')
+      console.log('发请求')
+      console.log('初始化')
+    })
+
+    onUnmounted(() => {
+      console.log('卸载的时候操作')
+    })
+
     let start = () => {
       router.push({
         // path: '/home',

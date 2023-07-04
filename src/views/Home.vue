@@ -1,15 +1,8 @@
 <template>
   <div>
-    <!-- <nav-header></nav-header>
-    <nav-main></nav-main>
-    <nav-footer></nav-footer> -->
-    <!-- {{ num1 }} --- {{ num2 }}
-    两个数的和 {{ addNum }}
-    <div>
-      <button @click="add">add</button>
-    </div> -->
-    <!-- {{ list }} -->
-    <button @click="goto">跳转路由</button>
+    <nav-header @add="add"></nav-header>
+    <nav-main :list="list"></nav-main>
+    <nav-footer :list="list"></nav-footer>
   </div>
 </template>
 
@@ -32,55 +25,20 @@ export default defineComponent({
     NavFooter,
   },
 
-  setup(props, ctx) {
-    const router = useRouter()
-    const route = useRoute()
-    console.log(route.params)
+  setup() {
     let store = useStore()
     let list = computed(() => {
       return store.state.list
     })
-    // let num = ref(10)
-    // let name = ref('zhangsan')
-    // let arr = ref(['a', 'b', 'c', 'd'])
-
-    let data = reactive({
-      name: 'zhangsan',
-      age: 20,
-      obj: {
-        price: 10,
-      }
-    })
-
-    let num1 = ref(10)
-    let num2 = ref(20)
-    let addNum = computed(() => {
-      return num1.value + num2.value
-    })
-
-    let add = () => {
-      num1.value++
-      num2.value++
-    }
-
-    let goto = () => {
-      router.push({
-        path: '/about'
-      })
+    let value = ref('')
+    const add = (val) => {
+      value.value = val
     }
 
     return {
-      // num, 
-      // name,
-      // arr
-      // data
-      ...toRefs(data),
-      num1,
-      num2,
-      addNum,
-      add,
-      list, 
-      goto,
+      add, 
+      value,
+      list,
     }
   }
 })

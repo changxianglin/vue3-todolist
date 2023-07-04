@@ -20,6 +20,7 @@ export default defineComponent({
 
     let enter = () => {
       console.log(value.value)
+      ctx.emit('add', value.value)
     }
 
     return {

@@ -4,13 +4,13 @@
       已完成{{isComplete}} / 全部{{list.length}}
     </div>
     <div v-if="isComplete > 0" class="btn">
-      <button class="clearn">清除已完成</button>
+      <button class="clearn" @click="clearn">清除已完成</button>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 export default defineComponent({
   name: 'NavFooter',
   props: {
@@ -24,10 +24,18 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-    let isComplete = ref(1)
+    let isComplete = computed(() => {
+      let arr = props.list.filter((item) => {
+        return item.complete
+      })
+      return arr.length
+    })
 
     let clearn = () => {
-    
+      let arr = props.list.filter((item) => {
+        return item.complete === false
+      })
+      ctx.emit('clear', arr)
     }
 
     return {

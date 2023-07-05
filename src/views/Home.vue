@@ -1,8 +1,8 @@
 <template>
   <div>
     <nav-header @add="add"></nav-header>
-    <nav-main :list="list"></nav-main>
-    <nav-footer :list="list"></nav-footer>
+    <nav-main :list="list" @del="del"></nav-main>
+    <nav-footer :list="list" @clear="clear"></nav-footer>
   </div>
 </template>
 
@@ -33,10 +33,35 @@ export default defineComponent({
     let value = ref('')
     const add = (val) => {
       value.value = val
+      let flag = true
+      list.value.map((item) => {
+        if(item.title === value.value) {
+          flag = false
+          alert('exist task')
+        }
+      })
+
+      if(flag) {
+        store.commit('addTodos', {
+        title: value.value,
+        complete: false,
+      })
+      }
+    }
+
+    const del = (val) => {
+      console.log(val)
+      store.commit('delTodo', val)
+    }
+
+    const clear = (val) => {
+      store.commit('clearn', val)
     }
 
     return {
       add, 
+      del,
+      clear,
       value,
       list,
     }
